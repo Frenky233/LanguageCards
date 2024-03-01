@@ -1,4 +1,6 @@
+import { Header } from '@/components/server/header/components';
 import '@/styles/global.scss';
+import styles from './styles.module.scss';
 
 export default function RootLayout({
   children,
@@ -7,7 +9,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className={styles.layout}>
+          <Header />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

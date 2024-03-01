@@ -1,0 +1,10 @@
+@import '../../../styles/variables.scss';
+
+.navigation{
+    display: flex;
+    gap: 4px;
+
+    &Button{
+        background-color: $backgroundColor;
+    }
+}

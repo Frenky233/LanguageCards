@@ -1,0 +1,27 @@
+@import '../styles/variables.scss';
+
+.layout{
+    height: 100%;
+    max-width: $containerWidth;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.main{
+    flex-grow: 1;
+    position: relative;
+}
+
+.main::before{
+    content: '';
+    z-index: -1;
+    border-top: 1px solid $borderColor;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    height: 100%;
+    background-color: $backgroundColor;
+    transform: translateX(-50%);
+}

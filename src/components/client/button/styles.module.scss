@@ -1,0 +1,18 @@
+@import '../../../styles/variables.scss';
+
+.button{
+   padding: 10px;
+   border: 1px solid black;
+   border-radius: 8px; 
+   cursor: pointer;
+}
+
+.variant{
+    &Primary{
+        background-color: $buttonPrimaryColor;
+    }
+    
+    &Secondary{
+        background-color: $buttonSecondaryColor;
+    }
+}

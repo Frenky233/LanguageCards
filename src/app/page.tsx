@@ -1,5 +1,7 @@
+import styles from './styles.module.scss';
+
 export default function Home() {
   return (
-    <div>Page</div>
+    <main className={styles.main}>Page</main>
   );
 }

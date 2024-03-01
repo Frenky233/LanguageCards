@@ -1,0 +1,11 @@
+@import '../../../styles/variables.scss';
+
+.header{
+    width: $containerWidth;
+    display: flex;
+    align-items: center;
+
+    &Auth{
+        margin-left: auto;
+    }
+}
