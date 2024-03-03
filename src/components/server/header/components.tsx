@@ -2,14 +2,14 @@ import { FC } from 'react';
 import styles from './styles.module.scss';
 import { Logo } from '../logo/component';
 import { Navigation } from '../navigation/component';
-import { UserAuth } from '../userAuth/component';
+import { UserAuthContainer } from '@/components/client/userAuth/container';
 
 export const Header: FC = () => {
     return (
         <header className={styles.header}>
             <Logo />
             <Navigation />
-            <UserAuth className={styles.headerAuth} />
+            <UserAuthContainer className={styles.headerAuth} />
         </header>
     );
 }

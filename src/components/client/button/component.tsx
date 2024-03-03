@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { type FC, type PropsWithChildren, type SVGProps } from "react";
 import styles from "./styles.module.scss";

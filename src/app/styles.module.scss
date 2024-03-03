@@ -15,8 +15,8 @@
 
 .main::before{
     content: '';
-    z-index: -1;
     border-top: 1px solid $borderColor;
+    z-index: -1;
     position: absolute;
     top: 0;
     left: 50%;

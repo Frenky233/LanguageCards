@@ -1,0 +1,11 @@
+.input{
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+
+    input{
+        border: 1px solid black;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+}
