@@ -3,18 +3,17 @@
 import { FC } from 'react';
 import styles from './styles.module.scss';
 import { Button } from '@/components/client/button/component';
-import clsx from 'clsx';
 
 type Props ={
-    className?: string;
-    onClick: () => void;
+    onLoginClick: () => void;
+    onSignupClick: () => void;
 }
 
-export const UserAuthComponent: FC<Props> = ({className, onClick}) => {
-
+export const UserAuthComponent: FC<Props> = ({onLoginClick, onSignupClick}) => {
     return (
-        <div className={clsx(styles.userAuth, className)}>
-            <Button onClick={onClick} variant={'Primary'}>Log In</Button>
+        <div className={styles.userAuth}>
+            <Button onClick={onLoginClick} variant={'Primary'} className={styles.userAuthLogin}>Log In</Button>
+            <Button onClick={onSignupClick} className={styles.userAuthSignup}>Sign Up</Button>
         </div>
     );
 }

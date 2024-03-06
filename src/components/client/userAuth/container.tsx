@@ -4,18 +4,27 @@ import { FC, useState } from 'react';
 import styles from './styles.module.scss';
 import { UserAuthComponent } from './component';
 import { ModalContainer } from '../modal/container';
-import { UserAuthFormContainer } from '../userAuthForm/container';
+import { UserLoginFormComponent } from '../userLoginForm/component';
+import { UserSignupFormComponent } from '../userSignupForm/component';
 
-type Props ={
-    className?: string;
-}
 
-export const UserAuthContainer: FC<Props> = ({className}) => {
+export const UserAuthContainer: FC = ({}) => {
     const [showModal, setShowModal] = useState(false);
-    
+    const [modalType, setModalType] = useState('login');
+
     const onOpen = () =>{
         document.body.style.overflow = 'hidden';
         setShowModal(true);
+    }
+
+    const onLoginClick = () =>{
+        setModalType('login');
+        onOpen();
+    }
+
+    const onSignupClick = () =>{
+        setModalType('signup');      
+        onOpen();
     }
 
     const onClose = () =>{
@@ -25,8 +34,13 @@ export const UserAuthContainer: FC<Props> = ({className}) => {
 
     return (
         <>
-            <UserAuthComponent onClick={onOpen} className={className} />
-            {showModal && <ModalContainer onClose={onClose}><UserAuthFormContainer className={styles.modal}/></ModalContainer>}
+            <UserAuthComponent onSignupClick={onSignupClick} onLoginClick={onLoginClick}/>
+            {showModal && <ModalContainer onClose={onClose}>
+                {modalType === 'login'
+                    ?<UserLoginFormComponent className={styles.modal}/>
+                    :<UserSignupFormComponent className={styles.modal}/>
+                }
+            </ModalContainer>}
         </>
     );
 }

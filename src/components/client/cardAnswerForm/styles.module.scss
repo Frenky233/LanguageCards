@@ -1,0 +1,37 @@
+.answerForm{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &Textarea{
+        flex-grow: 1;
+    }
+
+    &Control{
+        display: flex;
+        gap: 4px;
+    }
+
+    &Submit{
+        flex-grow: 1;
+        font-size: 24px;
+        font-weight: 500;
+        height: 40px;
+        padding: 0 !important;
+    }
+
+    &ButtonLeft{
+        padding: 0 !important;
+        width: 40px;
+        height: 40px;
+
+        svg{
+            transform: rotate(180deg);
+        }
+    }
+    &ButtonRight{
+        padding: 0 !important;
+        width: 40px;
+        height: 40px;
+    }
+}

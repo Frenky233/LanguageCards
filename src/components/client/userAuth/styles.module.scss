@@ -1,7 +1,26 @@
+@import '../../../styles/variables.scss';
+
 .userAuth{
     display: flex;
+    gap: 4px;
+
+    &Login{
+        color: #FFFFFF;
+    }
+
+    &Signup{
+        color: $buttonPrimaryColor !important;
+        border-color: $buttonPrimaryColor !important;
+        background-color: #FFFFFF;
+
+        &:hover{
+            background-color: rgba($buttonPrimaryColor, 0.15);
+        }
+    }
 }
 
 .modal{
-    margin-bottom: 30px;
+    button{
+        color: #FFFFFF;
+    }
 }

@@ -22,17 +22,17 @@
     padding: 8px;
     
     &Title{
-        height: 30px;
+        height: 25px;
     }
 
     &Exit{
         position: absolute;
         right: 5px;
         top: 5px;
-        width: 30px;
-        height: 30px;
-        padding: 0;
-        border: none;
+        width: 25px;
+        height: 25px;
+        padding: 0 !important;
+        border: none !important;
         background-color: transparent;
     }
 }

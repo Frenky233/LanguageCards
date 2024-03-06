@@ -9,7 +9,7 @@ type Props = PropsWithChildren<{
     disabled?: HTMLButtonElement["disabled"];
     onClick?: () => void;
     type?: HTMLButtonElement["type"];
-    variant?: 'Primary' | 'Secondary';
+    variant?: 'Primary' | 'Secondary' | 'Push';
 }>;
 
 export const Button: FC<Props> = ({
@@ -18,7 +18,7 @@ export const Button: FC<Props> = ({
   disabled,
   onClick,
   type = "button",
-  variant
+  variant,
 }) => {
   return (
     <button

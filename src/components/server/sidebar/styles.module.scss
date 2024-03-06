@@ -1,0 +1,24 @@
+@import '../../../styles/variables.scss';
+
+.sidebar{
+    border-right: 1px solid $borderColor;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 200px;
+
+    &Save{
+
+    }
+    
+    &Title{
+        font-size: 20px;
+    }
+
+    &Categories{
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+}

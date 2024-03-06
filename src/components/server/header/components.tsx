@@ -8,8 +8,10 @@ export const Header: FC = () => {
     return (
         <header className={styles.header}>
             <Logo />
-            <Navigation />
-            <UserAuthContainer className={styles.headerAuth} />
+            <div className={styles.headerInner}>
+                <Navigation />
+                <UserAuthContainer />
+            </div>
         </header>
     );
 }

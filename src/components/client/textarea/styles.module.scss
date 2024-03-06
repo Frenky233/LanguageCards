@@ -1,0 +1,14 @@
+@import '../../../styles/variables.scss';
+
+.wrapper{
+    display: flex;
+}
+
+.textarea{
+    flex-grow: 1;
+    resize: none;
+    border: 1px solid $borderColor;
+    border-radius: 8px;
+    padding: 4px;
+    font-size: 16px;
+}

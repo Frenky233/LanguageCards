@@ -1,0 +1,12 @@
+@import '../../../styles/variables.scss';
+
+.sidebarItem{
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 2px;
+    transition: background-color linear 0.1s;
+
+    &:hover{
+        background-color: rgba(#a0a0a0, 0.5);
+    }
+}

@@ -1,7 +1,17 @@
+@import '../../../styles/variables.scss';
+
 .navItem{
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 8px;
+    padding: 8px;
+    border: 1px solid #000000;
+    border-radius: 8px; 
+    cursor: pointer;
+    font-size: 14px;
     text-decoration: none;
-    color: black;
+    color: #000000;
+    transition: background-color linear 0.2s;
+    background-color: $backgroundColor;
+
+    &:hover{
+        background-color: rgba(#959595, 0.5);
+    }
 }

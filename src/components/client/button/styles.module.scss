@@ -1,18 +1,45 @@
 @import '../../../styles/variables.scss';
 
+@mixin buttonVariant($bgColor, $bgColorHover){
+    background-color: $bgColor;
+    border-color: $bgColor;
+    &:hover{
+        background-color: $bgColorHover;
+        border-color: $bgColorHover;
+    }
+}
+
 .button{
-   padding: 10px;
-   border: 1px solid black;
-   border-radius: 8px; 
-   cursor: pointer;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 8px; 
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color linear 0.2s, border-color linear 0.2s;
 }
 
 .variant{
     &Primary{
-        background-color: $buttonPrimaryColor;
+        @include buttonVariant($buttonPrimaryColor, $buttonPrimaryColorHover)
     }
     
     &Secondary{
+        @include buttonVariant($buttonSecondaryColor, $buttonSecondaryColorHover)
+    }
+
+    &Push{
         background-color: $buttonSecondaryColor;
+        border-color: $borderColor;
+        border-width: 2px;
+        box-shadow: 0 4px 0 rgba($borderColor, 0.8);
+
+        &:hover{
+            background-color: $buttonSecondaryColorHover;
+        }
+
+        &:active{
+            transform: translateY(4px);
+            box-shadow: none;
+        }
     }
 }

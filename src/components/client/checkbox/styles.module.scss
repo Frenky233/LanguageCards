@@ -1,0 +1,79 @@
+@import '../../../styles/variables.scss';
+
+.checkbox{
+	display: flex;
+	position: relative;
+
+    &Input{
+        position: absolute;
+        opacity: 0;
+        left: -100vw;
+    }
+
+    &State{
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;    
+    }
+
+    &Control{
+        width: 24px;
+        height: 24px;
+        border: 1px solid $borderColor;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &Title{
+        color: #000000;
+    }
+
+    &Icon{
+        color: white;
+        opacity: 0;
+    }
+
+    &Input:checked ~ &State &Control{
+        background-color: $buttonPrimaryColor;
+	    border-color: $buttonPrimaryColor;
+        animation: pulse 0.5s;
+    }
+
+    &Input:checked ~ &State &Icon{
+        opacity: 1;
+    }
+
+    &Input:focus ~ &State &Title{
+        text-decoration: underline;
+    }
+
+    &Input:disabled ~ &State{
+        pointer-events: none;
+    }
+
+    &Input:disabled ~ &State &Control{
+        background-color: $borderColor;
+        border-color: $borderColor;
+    }
+
+    &Input:disabled ~ &State &Icon{
+        opacity: 0;
+    }
+
+    &Input:disabled ~ &State &Title{
+        color: $borderColor;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 #bdc3c7;
+    }
+    100% {
+        box-shadow: 0 0 0 1.5rem rgba(189, 195, 199, 0);
+    }
+}   

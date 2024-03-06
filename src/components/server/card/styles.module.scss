@@ -1,5 +1,36 @@
 @import '../../../styles/variables.scss';
 
+.wrapper{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 1rem;
+}
+
 .card{
     border: 1px solid $borderColor;
+    border-radius: 8px;
+    height: 100%;
+    width: 50%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 2px;
+
+    &Title{
+        flex-grow: 1;
+        max-height: 400px;
+    }
+
+    &Pronunciation{
+        font-size: 32px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    &Answer{
+        height: 200px;
+    }
 }

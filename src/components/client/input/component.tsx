@@ -1,3 +1,5 @@
+'use client'
+
 import { FC, PropsWithChildren } from 'react';
 import styles from './styles.module.scss';
 import clsx from 'clsx';
@@ -6,7 +8,7 @@ type Props = PropsWithChildren<{
     id: string;
     value: string | number;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    type: 'text' | 'password';
+    type: HTMLInputElement['type'];
     className?: string;
 }>;
 
