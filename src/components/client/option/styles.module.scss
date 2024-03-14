@@ -1,0 +1,14 @@
+@import '../../../styles/variables.scss';
+
+.option{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 1000;
+    background-color: white;
+    width: 100%;
+    padding: 4px;
+    border: 1px solid $borderColor;
+    border-radius: 8px;
+}

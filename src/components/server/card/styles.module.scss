@@ -22,6 +22,7 @@
     &Title{
         flex-grow: 1;
         max-height: 400px;
+        vertical-align: middle;
     }
 
     &Pronunciation{
@@ -31,6 +32,48 @@
     }
 
     &Answer{
-        height: 200px;
+        flex-grow: 1;
+        max-height: 200px;
+    }
+
+    &Loading{
+        padding-bottom: 15.5px;
+    }
+}
+
+.loading{
+    color: transparent;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: backgroundMovement;
+    animation-timing-function: linear;
+    background: #DDE2E5;
+    background: linear-gradient(267.58deg, #DDE2E5 0%, #c8c7c7 80%, #DDE2E5 100%);
+    background-size: 200%;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    border-radius: 10px;
+
+    &Title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-height: none;
+
+        div{
+            height: 100%;
+        }
+    }
+}
+
+@keyframes backgroundMovement {
+    0% {
+        background-position: 100%;
+    }
+
+    100% {
+        background-position: -100%;
     }
 }

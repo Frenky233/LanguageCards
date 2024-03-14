@@ -1,13 +1,13 @@
 "use client"
 
-import { type FC, type PropsWithChildren, type SVGProps } from "react";
+import { MouseEventHandler, type FC, type PropsWithChildren} from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
 
 type Props = PropsWithChildren<{
     className?: string;
     disabled?: HTMLButtonElement["disabled"];
-    onClick?: () => void;
+    onClick?: (event: React.MouseEvent<HTMLElement>) => void;
     type?: HTMLButtonElement["type"];
     variant?: 'Primary' | 'Secondary' | 'Push';
 }>;

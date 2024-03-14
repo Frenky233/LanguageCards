@@ -1,0 +1,18 @@
+.button{
+    position: relative;
+
+    &Popup{
+        position: absolute;
+        left: 36px;
+        transform: translateY(-50%);
+    }
+}
+
+.addNewButton{
+    width: 28px;
+
+    svg{
+        color: #FFFFFF;
+    }
+}
+

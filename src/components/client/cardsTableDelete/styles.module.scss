@@ -1,0 +1,22 @@
+@import '../../../styles/variables.scss';
+
+.delete{
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 50%;
+
+    @media screen and (min-width: 766px) {
+        &:hover{
+            background-color: rgba($borderColor, 0.5);
+        }
+    }
+
+    &:active{
+        background-color: rgba($buttonDeleteColorHover, 0.5);
+    }
+    
+    svg{
+        transform: rotate(45deg);
+        color: $buttonDeleteColor;
+    }
+}

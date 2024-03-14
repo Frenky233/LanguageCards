@@ -29,9 +29,9 @@ const reducer = (state : StateT, {type, payload}: ActionT) =>{
 }
 
 type Hook = (initialState?: typeof INITIAL_STATE) => {
-    form: typeof INITIAL_STATE,
-    setUser: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    setPassword: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    form: typeof INITIAL_STATE;
+} & {
+    [Property in keyof StateT as `set${Capitalize<Property>}`] : (event : React.ChangeEvent<HTMLInputElement>) => void;
 } 
 
 export const useLoginForm: Hook = (initialState = INITIAL_STATE) =>{
@@ -42,7 +42,7 @@ export const useLoginForm: Hook = (initialState = INITIAL_STATE) =>{
     }, []);
 
     const setPassword = useCallback((event: React.ChangeEvent<HTMLInputElement>) =>{
-        dispatch({type: "setPassword", payload: (event.target as HTMLInputElement).value})
+        dispatch({type: "setPassword", payload: event.target.value})
     }, [])
 
     return {

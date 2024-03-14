@@ -1,0 +1,30 @@
+@import '../../../styles/variables.scss';
+
+.cardsTable{
+    display: grid;
+    border: 1px solid $borderColor;
+    border-radius: 4px;
+
+    &Header{
+        border-top-left-radius: 3.25px;
+        border-top-right-radius: 3.25px;
+        border-bottom: 1px solid $borderColor;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 32px;
+        font-size: 20px;
+        height: 30px;
+        padding-inline: 24px;
+        background-color: #6c7ae0;
+        color: #FFFFFF;
+
+        &:only-child{
+            border-radius: 3.25px;
+            border-bottom: none;
+        }
+
+        div{
+            display: flex;
+            align-items: center;
+        }
+    }
+}

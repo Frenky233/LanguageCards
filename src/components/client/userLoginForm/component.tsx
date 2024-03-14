@@ -14,7 +14,6 @@ type Props ={
 
 export const UserLoginFormComponent: FC<Props> = ({className}) => {
     const {form, setUser, setPassword} = useLoginForm();
-    useDebounce(form, 200);
     
     return (
         <form className={clsx(styles.userAuthForm, className)}>

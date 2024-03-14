@@ -7,17 +7,18 @@ import clsx from 'clsx';
 
 type Props = {
     onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    onSubmit: () => void;
     value: string;
     className?: string;
 }
 
-export const CardAnswerFormComponent: FC<Props> = ({onChange, value, className}) => {
+export const CardAnswerFormComponent: FC<Props> = ({onChange, onSubmit, value, className}) => {
     return (
         <form className={clsx(styles.answerForm, className)}>
             <Textarea className={styles.answerFormTextarea} value={value} onChange={onChange} id='answer' placeholder='Type answer here...'/>
             <div className={styles.answerFormControl}>
                 <Button variant='Push' className={styles.answerFormButtonLeft}><ArrowIcon/></Button>
-                <Button variant='Push' className={styles.answerFormSubmit} type='submit'>Answer</Button>
+                <Button onClick={onSubmit} variant='Push' className={styles.answerFormSubmit} type='submit'>Answer</Button>
                 <Button variant='Push' className={styles.answerFormButtonRight}><ArrowIcon/></Button>
             </div>
         </form>

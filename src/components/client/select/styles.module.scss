@@ -1,0 +1,25 @@
+.select{
+    display: flex;
+    position: relative;
+
+    &Control{
+        flex-grow: 1;
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &Button{
+        flex-grow: 1;
+    }
+
+    &List{
+        position: absolute;
+        top: 30px;
+
+        &Wrapper{
+            display: none;
+        }
+    }
+}

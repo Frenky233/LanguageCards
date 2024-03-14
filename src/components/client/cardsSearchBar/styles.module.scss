@@ -1,0 +1,10 @@
+.searchBar{
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    &Input{
+        flex-grow: 1;
+        height: 75%;
+    }
+}

@@ -13,10 +13,15 @@ export const CardAnswerFormContainer: FC<Props> = ({className}) => {
     const onChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) =>{
         setAnswer(event.target.value);
     }, []);
+
+    const onSubmit = () =>{
+        console.log(answer);
+        
+    }
     
     return (
         <>
-            <CardAnswerFormComponent value={answer} onChange={onChange} className={className}/>
+            <CardAnswerFormComponent value={answer} onChange={onChange} onSubmit={onSubmit} className={className}/>
         </>
     );
 }

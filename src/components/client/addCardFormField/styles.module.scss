@@ -1,0 +1,22 @@
+@import '../../../styles/variables.scss';
+
+.formField{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &Inputs{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    button{
+        padding: 0;
+        height: 28px;
+    }
+
+    svg{
+        color: #FFFFFF;
+    }
+}

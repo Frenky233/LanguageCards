@@ -10,13 +10,15 @@ type Props = PropsWithChildren<{
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     type: HTMLInputElement['type'];
     className?: string;
+    placeholder?: string;
+    autoFocus?: boolean;
 }>;
 
-export const Input: FC<Props> = ({id, value, onChange, type, className, children}) => {
+export const Input: FC<Props> = ({id, value, onChange, type, className, placeholder, autoFocus, children}) => {
     return (
         <div className={clsx(styles.input, className)}>
-            <label htmlFor={id}>{children}</label>
-            <input id={id} type={type} value={value} onChange={onChange}/>
+            {children && <label htmlFor={id}>{children}</label>}
+            <input id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} autoFocus={autoFocus}/>
         </div>
     );
 }

@@ -1,0 +1,30 @@
+@import '../../../styles/variables.scss';
+
+.cardsTableItem{
+    border-bottom: 1px solid $borderColor;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 32px;
+    font-size: 20px;
+    height: 30px;
+    padding-inline: 24px;
+
+    &:last-child{
+        border: none;
+        border-bottom-left-radius: 3.25px;
+        border-bottom-right-radius: 3.25px;
+    }
+
+    &:nth-last-child(2n){
+        background-color: #f8f6ff;
+    }
+
+    div{
+        display: flex;
+        align-items: center;
+        gap: 6px
+    }
+
+    &Delete{
+        margin: 0 auto;
+    }
+}

@@ -10,14 +10,14 @@ export const useClickHandler: Hook = (id, callback) =>{
         const onClickOutside = (event : Event) =>{
             if(!event.target) return;
             if((event.target as HTMLElement).id === id){
-                callback()
+                callback();
             }
         }
 
-        document.addEventListener('click', onClickOutside);
+        document.addEventListener('pointerdown', onClickOutside);
 
         return () =>{
-            document.removeEventListener('click', onClickOutside)
+            document.removeEventListener('pointerdown', onClickOutside)
         }
     },[id, callback])
 } 
