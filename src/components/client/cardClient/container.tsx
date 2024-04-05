@@ -2,32 +2,60 @@
 
 import { CardComponent } from '@/components/server/card/component';
 import { CardLoading } from '@/components/server/card/loading';
-import { db } from '@/db/db.modal';
-import { useLiveQuery } from 'dexie-react-hooks';
-import { FC } from 'react';
+import { getCards } from '@/redux/ui/currentCards';
+import { FC, useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export const CardClientContainer: FC = ({}) => {
-    const cards = useLiveQuery(async () =>{
-        const cards = await db.cards
-            .where('word')
-            .equalsIgnoreCase('私')
-            .toArray();
-        return cards;
-    }, [])
+    const [loading, setLoading] = useState(true);
+    const [update, setUpdate] = useState(false);
+    const [lastCardId, setLastCardId] = useState(-1);
+    const cards = useSelector(getCards);
+    const card = useMemo(() => {
+        const getRandom = () => Math.floor(Math.random() * cards.length);
+        let number = getRandom();
 
-    if(!cards){
-        return <CardLoading />
+        if(cards.length > 1) while(number === lastCardId) number = getRandom();
+        
+        return cards[number];
+    }, [JSON.stringify(cards), update]);
+
+    useEffect(() => {
+        setLoading(false);
+    }, [update]);
+
+    console.log(cards);
+    
+
+    const getNextCardHandler = async() =>{
+        await swipeCard();
+        setLoading(true);
+        setUpdate(!update);
+        setLastCardId(cards.indexOf(card));
     }
 
-    let word: string = 'test'
-    let pronunciation: string = 'test'
+    const swipeCard = async() =>{
+        const cardElement = document.getElementById('card');
 
-    if(cards[0]){
-        word = cards[0].word;
-        pronunciation = cards[0].pronunciation
+        if(!cardElement) return;
+
+        const {height, width} = cardElement.getBoundingClientRect();
+
+        cardElement.style.height = height + 'px';
+        cardElement.style.width = width + 'px';
+        cardElement.dataset.swipe = 'true';
+        document.body.style.overflow = 'hidden';
+
+        await new Promise(r => setTimeout(r, 700));
+
+        document.body.removeAttribute('style');
     }
 
-    return (
-        <CardComponent title={word} pronunciation={pronunciation}/>
-    );
+    useEffect(() =>{
+        if(card && !cards.includes(card)) getNextCardHandler();
+    }, [JSON.stringify(cards)]);
+
+    if(loading || !card) return <CardLoading />;
+
+    return <CardComponent getNextCard={getNextCardHandler} title={card.word} pronunciation={card.pronunciation} translations={card.translations}/>;
 }

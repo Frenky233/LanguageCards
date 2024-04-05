@@ -30,3 +30,15 @@
     display: flex;
     height: 100%;
 }
+
+.wrapper{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 1rem;
+    position: relative;
+    margin-inline: 1rem;
+    transition: 200ms margin ease-in-out;
+    margin-left: 200px;
+}

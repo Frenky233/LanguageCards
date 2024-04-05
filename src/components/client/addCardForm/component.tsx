@@ -1,39 +1,38 @@
 'use client'
 
-import { FC, useCallback } from 'react';
+import { FC, useEffect } from 'react';
 import styles from './styles.module.scss';
 import { Input } from '../input/component';
 import { useAddCardForm } from './useAddCardForm';
 import { AddCardFormCreateInput } from '../addCardFormCreateInput/component';
 import { Button } from '../button/component';
 import { AddCardFormField } from '../addCardFormField/component';
-import { db } from '@/db/db.modal';
-import { SelectContainer } from '../select/container';
 import { CategorySelectorContainer } from '../categorySelector/container';
 
-export const AddCardForm: FC = ({}) => {
-    const {form, setWord, setTranslations, setPronunciation, setCategories} = useAddCardForm();
+type Props = {
+    onSubmit: (form: {word: string, translations: string[], pronunciation: string, categories: Record<string, boolean>}) => void;
+    initialState: {
+        word: string;
+        translations: string[];
+        pronunciation: string;
+        categories: Record<string, boolean>
+        id?: number;
+    };
+}
 
-    console.log(form);
+export const AddCardForm: FC<Props> = ({onSubmit, initialState}) => {
+    const {form, setWord, setTranslations, setPronunciation, setCategories} = useAddCardForm(initialState);
 
-    const onSubmit = useCallback(async () =>{
-        try{
-            const categories = Object.entries(form.categories).map(([name, checked]) => {
-                if(checked) return name;
-            }).filter(name => name) as string[];
-
-            const formSubmit = {
-                word: form.word,
-                translations: form.translations,
-                pronunciation: form.pronunciation,
-                categories: categories
-            }
-
-            await db.cards.add(formSubmit);
-        } catch (e) {
-            console.log(e);
+    if(Object.keys(form.categories).length !== Object.keys(initialState.categories).length){
+        form.categories = {
+            ...initialState.categories,
+            ...form.categories
         }
-    }, [form])
+    }
+
+    const onClick = () =>{
+        onSubmit(form);
+    }
 
     return (
         <form className={styles.form}>
@@ -50,7 +49,7 @@ export const AddCardForm: FC = ({}) => {
             <AddCardFormField title='Categories'>
                 <CategorySelectorContainer categories={form.categories} onChange={setCategories}/>
             </AddCardFormField>
-            <Button onClick={onSubmit} variant='Push' type='button'>Save</Button>
+            <Button onClick={onClick} variant='Push' type='button' disabled={!(form.word && form.translations.some(item => item))}>Save</Button>
         </form>
     );
 }

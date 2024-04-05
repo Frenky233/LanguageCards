@@ -11,4 +11,16 @@
     border-radius: 8px;
     padding: 4px;
     font-size: 16px;
+
+    &:read-only{
+        pointer-events: none;
+    }
+
+    &[data-correct = true]{
+        border-color: green;
+    }
+
+    &[data-correct = false]{
+        border-color: red;
+    }
 }

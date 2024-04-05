@@ -1,23 +1,26 @@
 'use client'
 
-import { FC } from 'react';
+import { FC, RefObject } from 'react';
 import styles from './styles.module.scss';
 import { Input } from '../input/component';
-import { useSearchBarInput } from './useSearchBarInput';
-import { useDebounce } from 'use-debounce';
 import clsx from 'clsx';
+import SearchIcon from '@public/searchIcon.svg'
 
 type Props = {
+    value: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     className?: string;
 }
 
-export const CardsSearchBar: FC<Props> = ({className}) => {
-    const {value, setSearchQuery} = useSearchBarInput();
-    useDebounce(value, 200);
-
+export const CardsSearchBar: FC<Props> = ({value, onChange, className}) => {
     return (
         <form className={clsx(styles.searchBar, className)}>
-            <Input className={styles.searchBarInput} id='searchQuery' value={value} type='text' onChange={setSearchQuery} placeholder='Search...'/>
+            <label className={styles.searchBarWrapper}>
+                <Input className={styles.searchBarInput} id='searchQuery' value={value} type='text' onChange={onChange} placeholder='Word or Translation...'/>
+                <div className={styles.searchBarLogo}>
+                    <SearchIcon />
+                </div>
+            </label>
         </form>
     );
 }

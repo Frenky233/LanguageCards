@@ -1,0 +1,12 @@
+@import '../../../styles/variables.scss';
+
+.button{
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFFFFF;
+    background-color: $buttonPrimaryColor !important;
+
+    &:hover{
+        background-color: $buttonPrimaryColorHover !important;
+    }
+}

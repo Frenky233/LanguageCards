@@ -3,7 +3,7 @@
 .cardsTableItem{
     border-bottom: 1px solid $borderColor;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 32px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 48px;
     font-size: 20px;
     height: 30px;
     padding-inline: 24px;
@@ -19,9 +19,20 @@
     }
 
     div{
-        display: flex;
-        align-items: center;
-        gap: 6px
+        margin: auto 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:last-child{
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &Control{
+        justify-content: center;
     }
 
     &Delete{

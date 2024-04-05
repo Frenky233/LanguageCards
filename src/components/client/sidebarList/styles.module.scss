@@ -1,0 +1,15 @@
+.sidebarList{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &All{
+        font-weight: 600;
+    }
+}
+
+.button{
+    margin-top: 4px;
+    width: 100%;
+}

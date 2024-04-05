@@ -11,9 +11,7 @@ const INITIAL_STATE: InitialState= {
     word: '',
     translations: [],
     pronunciation: '',
-    categories: {
-        'Default': true,
-    }
+    categories: {}
 }
 
 type StateT = typeof INITIAL_STATE;

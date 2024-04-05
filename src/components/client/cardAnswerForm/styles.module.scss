@@ -14,21 +14,12 @@
 
     &Submit{
         flex-grow: 1;
-        font-size: 24px;
-        font-weight: 500;
+        font-size: 24px !important;
+        font-weight: 500 !important;
         height: 40px;
         padding: 0 !important;
     }
 
-    &ButtonLeft{
-        padding: 0 !important;
-        width: 40px;
-        height: 40px;
-
-        svg{
-            transform: rotate(180deg);
-        }
-    }
     &ButtonRight{
         padding: 0 !important;
         width: 40px;

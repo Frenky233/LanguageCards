@@ -1,0 +1,17 @@
+.sidebarToggle{
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    transition: left 200ms ease-in-out;
+
+    &Button{
+        border-radius: 50%;
+        border: none !important;
+        background-color: transparent;
+    
+        &:hover{
+            background-color: #979797 !important;
+        }
+    }
+}

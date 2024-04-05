@@ -23,3 +23,23 @@
         }
     }
 }
+
+.chevron{
+    right: 4px;
+    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg{
+        transform: rotate(180deg);
+        color: black;
+    }
+
+    &[data-open = true]{
+        svg{
+            transform: rotate(0);
+        }
+    }
+}

@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, PropsWithChildren, useEffect } from 'react';
+import { FC, PropsWithChildren, useEffect, useRef } from 'react';
 import styles from './styles.module.scss';
 import clsx from 'clsx';
 import { useFitText } from './useFitText';
@@ -10,16 +10,18 @@ type Props = PropsWithChildren<{
 }>;
 
 export const CardTitle: FC<Props> = ({children, className}) => {
+    const element = useRef<HTMLHeadingElement>(null);
+    const parent = useRef<HTMLDivElement>(null)
+    
     useEffect(() => {
-        const element = document.getElementById('cardTitle')!;
-        const parent = document.getElementById('cardTitleWrapper')!;
+        if(!element.current || !parent.current) return;
 
-        useFitText(element, parent, 1)
-    }, [])
+        useFitText(element.current, parent.current)
+    }, [children])
     
     return (
-        <div id='cardTitleWrapper' className={clsx(styles.wrapper, className)}>
-            <h3 id='cardTitle'>{children}</h3>
+        <div ref={parent} className={clsx(styles.wrapper, className)}>
+            <h3 ref={element}>{children}</h3>
         </div>
     );
 }

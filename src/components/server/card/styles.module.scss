@@ -1,34 +1,65 @@
 @import '../../../styles/variables.scss';
 
-.wrapper{
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-block: 1rem;
-}
-
 .card{
-    border: 1px solid $borderColor;
+    position: relative;
+    border: 2px solid $borderColor;
     border-radius: 8px;
     height: 100%;
-    width: 50%;
+    flex-grow: 1;
     max-width: 450px;
     display: flex;
     flex-direction: column;
     padding: 8px;
     gap: 2px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    background-color: #FFFFFF;
+
+    &::after{
+        content: '';
+        display: block;
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        border: 16px solid transparent;
+        border-top: 16px solid transparent;
+        border-left: 16px solid transparent;
+        border-top-left-radius: 8px;
+        z-index: 999;
+    }
+
+    @mixin answer($color) {
+        border-color: $color;
+
+        &::after{
+            border-top-color: $color;
+            border-left-color: $color;
+        }
+
+        .cardAnswer{
+            border-color: $color;
+        }
+    }
+
+    &[data-correct = true] {
+        @include answer(green);
+    }
+
+    &[data-correct = false] {
+        @include answer(red);
+    }
 
     &Title{
         flex-grow: 1;
-        max-height: 400px;
         vertical-align: middle;
+        word-break: keep-all;
+        max-height: 60%;
     }
 
     &Pronunciation{
         font-size: 32px;
         font-weight: 700;
         text-align: center;
+        margin-top: auto;
     }
 
     &Answer{
@@ -36,8 +67,29 @@
         max-height: 200px;
     }
 
-    &Loading{
-        padding-bottom: 15.5px;
+    &[data-swipe = true]{
+        position: absolute;
+        z-index: 1;
+        animation-duration: 700ms;
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
+        animation-name: swipeCard;
+        animation-timing-function: linear;
+    }
+}
+
+@keyframes swipeCard {
+    0% {
+        transform: translateX(0) rotate(0);
+        opacity: 1;
+    }
+    25% {
+        transform: translateX(-50px) rotate(-5deg);
+        opacity: 0.75;
+    }
+    35%,100%{
+        transform: translateX(-150px) rotate(-10deg);
+        opacity: 0;
     }
 }
 

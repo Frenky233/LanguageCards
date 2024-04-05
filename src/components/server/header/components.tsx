@@ -10,7 +10,7 @@ export const Header: FC = () => {
             <Logo />
             <div className={styles.headerInner}>
                 <Navigation />
-                <UserAuthContainer />
+                {/* <UserAuthContainer /> Uncomment when Back-end ready*/}
             </div>
         </header>
     );

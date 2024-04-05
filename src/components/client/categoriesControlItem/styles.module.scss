@@ -1,0 +1,54 @@
+@import '../../../styles/variables.scss';
+
+.item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &Title{
+        font-size: 18px;
+    }
+
+    &Control{
+        display: flex;
+    }
+    
+    &Edit{
+        padding: 0 !important;
+        border: none !important;
+        border-radius: 4px;
+        background-color: transparent;
+    
+        @media screen and (min-width: 766px) {
+            &:hover{
+                background-color: rgba($borderColor, 0.5);
+            }
+        }
+    
+        &:active{
+            background-color: rgba($borderColor, 0.5);
+        }
+    }
+
+    &Delete{
+        padding: 0 !important;
+        border: none !important;
+        border-radius: 50%;
+        background-color: transparent;
+    
+        @media screen and (min-width: 766px) {
+            &:hover{
+                background-color: rgba($borderColor, 0.5);
+            }
+        }
+    
+        &:active{
+            background-color: rgba($buttonDeleteColorHover, 0.5);
+        }
+        
+        svg{
+            transform: rotate(45deg);
+            color: $buttonDeleteColor;
+        }
+    }
+}
