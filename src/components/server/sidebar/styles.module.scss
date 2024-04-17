@@ -2,6 +2,7 @@
 
 .sidebar{
     border-right: 1px solid $borderColor;
+    border-top: 1px solid $borderColor;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -10,8 +11,21 @@
     transition: transform 200ms ease-in-out;
     position: absolute;
     height: 100%;
+    z-index: 4;
+    background-color: $backgroundColor;
+    
+
+    @media screen and (min-width: 650px) {
+        position: absolute;
+        margin-right: 16px;
+    }
     
     &Title{
         font-size: 20px;
+    }
+
+    &[data-closed = true]{
+        transition: none;
+        margin-right: 0;
     }
 }

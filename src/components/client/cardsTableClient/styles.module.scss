@@ -9,6 +9,7 @@
 
 .cardsTable{
     display: grid;
+    grid-auto-rows: auto;
     border: 1px solid $borderColor;
     border-radius: 4px;
 
@@ -17,12 +18,33 @@
         border-top-right-radius: 3.25px;
         border-bottom: 1px solid $borderColor;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 48px;
+        grid-template-columns: 1fr 1fr 48px;
         font-size: 20px;
         height: 30px;
         padding-inline: 24px;
         background-color: $buttonPrimaryColor;
         color: #FFFFFF;
+
+        div:nth-child(3), div:nth-child(4){
+            display: none;
+        }
+
+        @media screen and (min-width: 420px) {
+            grid-template-columns: 1fr 1fr 1fr 48px;
+            div:nth-child(3){
+                display: none;
+            }
+            div:nth-child(4){
+                display: flex;
+            }
+        }
+
+        @media screen and (min-width: 620px) {
+            grid-template-columns: 1fr 1fr 1fr 1fr 48px;
+            div:nth-child(3), div:nth-child(4){
+                display: flex;
+            }
+        }
 
         &:only-child{
             border-radius: 3.25px;
@@ -73,20 +95,50 @@
 
 .cardsControl{
     display: flex;
+    flex-direction: column;
     gap: 4px;
     justify-content: center;
     align-items: center;
+    
+
+    &Buttons{
+        display: flex;
+        gap: 4px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
 
     &Button{
-        width: 15%;
+        width: 25%;
+        flex-grow: 1;
     }
 
     &SearchBar{
         flex-grow: 1;
         height: 100%;
-        
+        width: 100%;
+
         input{
             font-size: 20px;
+        }
+    }
+
+    @media screen and (min-width: 500px) {
+        flex-direction: row;
+
+        &Button{
+            width: 100%;
+        }
+
+        &Buttons{
+            width: auto;
+            flex-grow: 1;
+        }
+
+        &SearchBar{
+            width: auto;
+            flex-grow: 4;
         }
     }
 }

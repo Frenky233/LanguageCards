@@ -39,6 +39,9 @@
     padding-block: 1rem;
     position: relative;
     margin-inline: 1rem;
-    transition: 200ms margin ease-in-out;
-    margin-left: 200px;
+
+    @media screen and (min-width: 650px) {
+        margin-left: 200px;
+        transition: margin 200ms ease-in-out;
+    }
 }

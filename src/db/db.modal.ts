@@ -6,6 +6,8 @@ export interface Card {
   translations: string[];
   pronunciation: string;
   categories: string[];
+  correct: number;
+  wrong: number
 }
 
 export class DB extends Dexie {
@@ -13,7 +15,7 @@ export class DB extends Dexie {
   constructor() {
     super('cards');
     this.version(1).stores({
-        cards: '++id, word, *translations, pronunciation, *categories'  
+        cards: '++id, word, *translations, pronunciation, *categories, correct, wrong'  
     });
   }
 }

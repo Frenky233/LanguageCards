@@ -2,17 +2,19 @@
 
 import React, { FC, useEffect, useRef } from 'react';
 import { CardAnswerFormComponent } from './component';
+import { db } from '@/db/db.modal';
 
 type Props = {
     getNextCard?: () => void;
     answer?: string[];
+    submitAnswerToDB?: (isCorrect: boolean) => void;
     className?: string;
 }
 
-export const CardAnswerFormContainer: FC<Props> = ({className, answer, getNextCard}) => {
+export const CardAnswerFormContainer: FC<Props> = ({className, answer, submitAnswerToDB, getNextCard}) => {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-    const buttonRef = useRef<HTMLButtonElement>(null)
-
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    
     const checkAnswer = (value: string) =>{
         const card = document.getElementById('card'); 
 
@@ -24,14 +26,20 @@ export const CardAnswerFormContainer: FC<Props> = ({className, answer, getNextCa
         buttonRef.current!.disabled = true;
         textareaRef.current!.readOnly = true;
         textareaRef.current!.dataset.correct = String(correct);
+        submitAnswerToDB!(correct);
     }
 
-    const onSubmit = (event: React.MouseEvent<HTMLButtonElement>) =>{
+    const onSubmit = async(event: React.MouseEvent<HTMLButtonElement>) =>{
         event.preventDefault();
         checkAnswer(textareaRef.current?.value!);
     }
 
     useEffect(() => {
+        textareaRef.current?.removeAttribute('readOnly');
+        textareaRef.current?.removeAttribute('data-correct');
+        textareaRef.current!.value = '';
+        buttonRef.current?.removeAttribute('disabled');
+
         const submitOnEnter = (event: KeyboardEvent) =>{
             if(document.getElementById('card')!.dataset.swipe === 'true') return;
 
@@ -52,7 +60,7 @@ export const CardAnswerFormContainer: FC<Props> = ({className, answer, getNextCa
         return () =>{
             document.removeEventListener('keydown', submitOnEnter);
         }
-    }, [])
+    }, [answer])
     
     return <CardAnswerFormComponent getNextCard={getNextCard!} submitButtonRef={buttonRef} textareaRef={textareaRef} onSubmit={onSubmit} className={className}/>;
 }

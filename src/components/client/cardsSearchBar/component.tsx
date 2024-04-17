@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, RefObject } from 'react';
+import { FC, RefObject, useMemo } from 'react';
 import styles from './styles.module.scss';
 import { Input } from '../input/component';
 import clsx from 'clsx';
@@ -17,9 +17,11 @@ export const CardsSearchBar: FC<Props> = ({value, onChange, className}) => {
         <form className={clsx(styles.searchBar, className)}>
             <label className={styles.searchBarWrapper}>
                 <Input className={styles.searchBarInput} id='searchQuery' value={value} type='text' onChange={onChange} placeholder='Word or Translation...'/>
-                <div className={styles.searchBarLogo}>
-                    <SearchIcon />
-                </div>
+                {useMemo(() => 
+                    <div className={styles.searchBarLogo}>
+                        <SearchIcon />
+                    </div>
+                , [])}
             </label>
         </form>
     );

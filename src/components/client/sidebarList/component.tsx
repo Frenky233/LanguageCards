@@ -23,7 +23,7 @@ export const SidebarListComponent: FC<Props> = ({categories, className}) => {
                 </li>
                 {Object.entries(form).map(([category, checked], index) => 
                     <li key={index}>
-                        <SidebarItem onChange={toggleLocalCategory} title={category} checked={checked}/>
+                        <SidebarItem disabled={isAllToggled} onChange={toggleLocalCategory} title={category} checked={checked}/>
                     </li>
                 )}
             </ul>

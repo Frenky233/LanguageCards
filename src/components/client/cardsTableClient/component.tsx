@@ -25,8 +25,10 @@ export const CardsTableClientComponent: FC<Props> = ({cards, searchValue, setSea
         <div className={styles.wrapper}>
             <div className={styles.cardsControl}>
                 <CardsSearchBar value={searchValue} onChange={setSearchQuery} className={styles.cardsControlSearchBar}/>
-                <CategoriesControlButtonContainer className={styles.cardsControlButton}/>
-                <AddCardContainer className={styles.cardsControlButton}/>
+                <div className={styles.cardsControlButtons}>
+                    <CategoriesControlButtonContainer className={styles.cardsControlButton}/>
+                    <AddCardContainer className={styles.cardsControlButton}/>
+                </div>
             </div>
             <div className={clsx(styles.cardsTable, inter)}>
                 <div className={styles.cardsTableHeader}>
@@ -36,8 +38,8 @@ export const CardsTableClientComponent: FC<Props> = ({cards, searchValue, setSea
                     <div><span id='categories' onClick={() => onHeaderClick('categories')}>Categories</span></div>
                     <div></div>
                 </div>
-                {cards?.map((card, index) => 
-                    <CardsTableItem card={card} key={index}/>
+                {cards?.map(card => 
+                    <CardsTableItem card={card} key={card.id}/>
                 )}     
             </div>
         </div>

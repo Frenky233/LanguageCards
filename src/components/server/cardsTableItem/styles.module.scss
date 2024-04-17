@@ -1,12 +1,17 @@
 @import '../../../styles/variables.scss';
 
 .cardsTableItem{
+    width: 100%;
     border-bottom: 1px solid $borderColor;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 48px;
-    font-size: 20px;
-    height: 30px;
-    padding-inline: 24px;
+    cursor: pointer;
+
+    *{
+        font-size: 24px;
+
+        @media screen and (min-width: 620px) {
+            font-size: 20px;
+        }
+    }
 
     &:last-child{
         border: none;
@@ -14,28 +19,95 @@
         border-bottom-right-radius: 3.25px;
     }
 
-    &:nth-last-child(2n){
+    &:nth-child(2n-1){
         background-color: #f8f6ff;
     }
 
-    div{
-        margin: auto 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    &Header{
+        display: grid;
+        grid-template-columns: 1fr 1fr 60px;
+        font-size: 20px;
+        height: 30px;
+        padding-inline: 24px;
 
-        &:last-child{
-            margin: 0;
-            display: flex;
-            align-items: center;
+        div:nth-child(3), div:nth-child(4){
+            display: none;
+        }
+
+        @media screen and (min-width: 420px) {
+            grid-template-columns: 1fr 1fr 1fr 60px;
+            div:nth-child(3){
+                display: none;
+            }
+            div:nth-child(4){
+                display: block;
+            }
+        }
+
+        @media screen and (min-width: 620px) {
+            grid-template-columns: 1fr 1fr 1fr 1fr 48px;
+            div:nth-child(3), div:nth-child(4){
+                display: block;
+            }
+        }
+    
+        div{
+            margin: auto 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+    
+            &:last-child{
+                margin: 0;
+                display: flex;
+                align-items: center;
+            }
+        }
+    
+        &Control{
+            justify-content: center;
+
+            svg{
+                width: 30px;
+                height: 30px;
+
+                @media screen and (min-width: 620px) {
+                    width: initial;
+                    height: initial;
+                }
+            }
         }
     }
 
-    &Control{
-        justify-content: center;
+    &Body{
+        display: block;
+        font-size: 20px;
+        height: 30px;
+        padding-inline: 24px;
+        max-height: 0;
+        height: auto;
+        overflow: hidden;
+        transition: max-height 0.25s ease-in-out;
+
+        div{
+            height: 28px;
+
+            span:first-child{
+                font-weight: 600;
+            }
+            span:last-child{
+                word-break: normal;
+            }
+            &:nth-last-child(3){
+                margin-top: 8px;
+            }
+        }
     }
 
-    &Delete{
-        margin: 0 auto;
+    &[data-open = true]{
+        .cardsTableItemBody{
+            max-height: 100vh;
+            transition: max-height 0.25s ease-in-out;
+        }
     }
 }

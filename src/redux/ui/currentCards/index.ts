@@ -1,5 +1,7 @@
 import { Card } from "@/db/db.modal";
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "@/redux";
+import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 
 export const currentCardsSlice = createSlice({
     name: 'currentCards',
@@ -29,6 +31,19 @@ export const currentCardsSlice = createSlice({
     selectors:{
         getCards: (state) => {
             return state;
+        },
+        getRandomCard: (state, lastId) =>{
+            const getRandom = () => Math.floor(Math.random() * state.length);
+            let number = getRandom();
+            
+            if(state.length === 0) return null;
+
+            if(state.length > 1) while(state[number].id === lastId) number = getRandom();
+
+            return state[number];
+        },
+        getCardsAmount: (state) =>{
+            return state.length;
         }
     }
 })
@@ -41,5 +56,7 @@ export const {
 } = currentCardsSlice.actions
 
 export const {
-    getCards
+    getCards,
+    getRandomCard,
+    getCardsAmount
 } = currentCardsSlice.selectors

@@ -1,8 +1,8 @@
 .sidebarToggle{
+    z-index: 3;
     position: absolute;
     top: 16px;
     left: 16px;
-    z-index: 2;
     transition: left 200ms ease-in-out;
 
     &Button{
@@ -10,8 +10,14 @@
         border: none !important;
         background-color: transparent;
     
-        &:hover{
+        &:active{
             background-color: #979797 !important;
+        }
+
+        @media screen and (min-width: 820px) {
+            &:hover{
+                background-color: #979797 !important;
+            }
         }
     }
 }

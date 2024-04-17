@@ -2,41 +2,46 @@
 
 import { CardComponent } from '@/components/server/card/component';
 import { CardLoading } from '@/components/server/card/loading';
-import { getCards } from '@/redux/ui/currentCards';
+import { db } from '@/db/db.modal';
+import { RootState } from '@/redux';
+import { getAllCheckedCategories } from '@/redux/ui/categories';
+import { getRandomCard } from '@/redux/ui/currentCards';
 import { FC, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export const CardClientContainer: FC = ({}) => {
     const [loading, setLoading] = useState(true);
-    const [update, setUpdate] = useState(false);
+    const [update, setUpdate] = useState(true);
     const [lastCardId, setLastCardId] = useState(-1);
-    const cards = useSelector(getCards);
+    const selectedCard = useSelector((state: RootState) => getRandomCard(state, lastCardId));
+    const categories = useSelector(getAllCheckedCategories);
+
     const card = useMemo(() => {
-        const getRandom = () => Math.floor(Math.random() * cards.length);
-        let number = getRandom();
-
-        if(cards.length > 1) while(number === lastCardId) number = getRandom();
-        
-        return cards[number];
-    }, [JSON.stringify(cards), update]);
-
+        return selectedCard;
+    }, [update, selectedCard !== null]);
+    
     useEffect(() => {
         setLoading(false);
-    }, [update]);
+    }, []);
 
-    console.log(cards);
-    
+    useEffect(() =>{
+        if(card) getNextCardHandler();
+    }, [JSON.stringify(categories)]);
 
     const getNextCardHandler = async() =>{
         await swipeCard();
-        setLoading(true);
+        card?.id && setLastCardId(card.id);
         setUpdate(!update);
-        setLastCardId(cards.indexOf(card));
+    }
+
+    const submitAnswerToDB = async(isCorrect: boolean) =>{
+        isCorrect
+            ? await db.cards.update(card!.id!, {correct: card!.correct + 1})
+            : await db.cards.update(card!.id!, {wrong: card!.wrong + 1})
     }
 
     const swipeCard = async() =>{
         const cardElement = document.getElementById('card');
-
         if(!cardElement) return;
 
         const {height, width} = cardElement.getBoundingClientRect();
@@ -49,13 +54,12 @@ export const CardClientContainer: FC = ({}) => {
         await new Promise(r => setTimeout(r, 700));
 
         document.body.removeAttribute('style');
+        cardElement.removeAttribute('data-swipe');
+        cardElement.removeAttribute('data-correct');
+        cardElement.removeAttribute('style');
     }
-
-    useEffect(() =>{
-        if(card && !cards.includes(card)) getNextCardHandler();
-    }, [JSON.stringify(cards)]);
 
     if(loading || !card) return <CardLoading />;
 
-    return <CardComponent getNextCard={getNextCardHandler} title={card.word} pronunciation={card.pronunciation} translations={card.translations}/>;
+    return <CardComponent submitAnswerToDB={submitAnswerToDB} getNextCard={getNextCardHandler} title={card.word} pronunciation={card.pronunciation} translations={card.translations}/>;
 }

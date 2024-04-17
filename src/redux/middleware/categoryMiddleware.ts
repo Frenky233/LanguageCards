@@ -23,9 +23,6 @@ export const lastSavedCategories = () =>{
 
             state[allToggledId] = isAllToggled;
         }
-        
-        console.log(state);
-        
 
         return state;
     }

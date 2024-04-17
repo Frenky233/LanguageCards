@@ -37,23 +37,18 @@ export const CardsTableEditContainer: FC<Props> = ({card}) => {
     }
 
     const onSubmit = (form: {word: string, translations: string[], pronunciation: string, categories: Record<string, boolean>}) =>{
-        try{
-            const categories = Object.entries(form.categories).map(([name, checked]) => {
-                if(checked) return name;
-            }).filter(name => name) as string[];
+        const categories = Object.entries(form.categories).map(([name, checked]) => {
+            if(checked) return name;
+        }).filter(name => name) as string[];
 
-            const formSubmit = {
-                word: form.word,
-                translations: form.translations,
-                pronunciation: form.pronunciation,
-                categories: categories
-            }
-
-            dispatch(editCard({card: formSubmit, id: card.id!}));
-        } catch (e) {
-            console.log(e);
+        const formSubmit = {
+            ...form,
+            categories: categories,
+            correct: 0,
+            wrong: 0
         }
 
+        dispatch(editCard({card: formSubmit, id: card.id!}));
         onClose();
     }
     

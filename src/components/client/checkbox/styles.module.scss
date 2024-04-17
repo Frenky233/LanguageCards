@@ -64,6 +64,10 @@
         opacity: 0;
     }
 
+    &Input:checked:disabled ~ &State &Icon{
+        opacity: 0.5;
+    }
+
     &Input:disabled ~ &State &Title{
         color: $borderColor;
     }

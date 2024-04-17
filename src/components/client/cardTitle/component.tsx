@@ -17,7 +17,7 @@ export const CardTitle: FC<Props> = ({children, className}) => {
         if(!element.current || !parent.current) return;
 
         useFitText(element.current, parent.current)
-    }, [children])
+    }, [children, window.innerWidth])
     
     return (
         <div ref={parent} className={clsx(styles.wrapper, className)}>

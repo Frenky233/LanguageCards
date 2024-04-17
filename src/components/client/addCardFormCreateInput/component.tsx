@@ -34,7 +34,7 @@ export const AddCardFormCreateInput: FC<Props> = ({value, id, onChange, classNam
     return (
         <>
             <div className={className}>
-                <Input id='translation_0' type='text' value={value[0] || ''} onChange={onChange} />
+                {value.map(item => <Input key={item} id='translation_0' type='text' value={item || ''} onChange={onChange} />)}
                 {createNewInput()}
             </div>
             <Button variant='Primary' onClick={increment}><PlusCircleIcon /></Button>

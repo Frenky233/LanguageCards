@@ -29,21 +29,18 @@ export const AddCardContainer: FC<Props> = ({className}) => {
     }
 
     const onSubmit = (form: {word: string, translations: string[], pronunciation: string, categories: Record<string, boolean>}) =>{
-        try{
-            const categories = Object.entries(form.categories).map(([name, checked]) => {
-                if(checked) return name;
-            }).filter(name => name) as string[];
+        const categories = Object.entries(form.categories).map(([name, checked]) => {
+            if(checked) return name;
+        }).filter(name => name) as string[];
 
-            const formSubmit = {
-                ...form,
-                categories: categories
-            }
-
-            dispatch(addCard(formSubmit));
-        } catch (e) {
-            console.log(e);
+        const formSubmit = {
+            ...form,
+            categories: categories,
+            correct: 0,
+            wrong: 0,
         }
 
+        dispatch(addCard(formSubmit));
         onClose();
     }
 

@@ -8,7 +8,7 @@ export type SymbolObject<T extends object = Record<any,any>, K = T[keyof T]> = {
 
 export const categoriesSlice = createSlice({
     name: 'categories',
-    initialState: {} as Record<string, boolean>,
+    initialState: {} as SymbolObject,
     reducers: {
         addCategory: (state, {payload: category}: PayloadAction<string>) =>{
             state[category] = false;
@@ -26,7 +26,7 @@ export const categoriesSlice = createSlice({
     selectors: {
         getCategoriesState: (state) =>{
             return state;
-        }
+        },
     }
 })
 
@@ -39,11 +39,11 @@ export const getAllCategories = createSelector(categoriesSlice.selectors.getCate
 })
 
 export const getAllCheckedCategories = createSelector(categoriesSlice.selectors.getCategoriesState, (categories) => {
-    return Object.fromEntries(Object.entries(categories).filter(([_, checked]) => checked));
+    return Object.entries(categories).filter(([_, checked]) => checked).map(([category, _]) => category);
 })
 
 export const {
-    getCategoriesState
+    getCategoriesState,
 } = categoriesSlice.selectors;
 
 export const {
