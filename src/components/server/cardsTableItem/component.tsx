@@ -10,13 +10,16 @@ type Props = {
 
 export const CardsTableItem: FC<Props> = ({card}) => {
     const onClick = (event: MouseEvent<HTMLDivElement>) =>{
-        if((event.target as HTMLElement).closest('button')) return;
+        const element = event.target as HTMLElement;
+
+        if(element.closest('button')) return;
+        const tableItem = element.closest('#item') as HTMLDivElement
         
-        event.currentTarget.dataset.open = event.currentTarget.dataset.open === 'true' ? 'false' : 'true';
+        tableItem.dataset.open = tableItem.dataset.open === 'true' ? 'false' : 'true';
     }
     
     return (
-        <div className={styles.cardsTableItem} onClick={onClick}>
+        <div className={styles.cardsTableItem} onClick={onClick} id='item'>
             <div className={styles.cardsTableItemHeader}>
                 <div>{card.word}</div>
                 <div>{card.translations.reduce((acc, item, index) =>
@@ -36,7 +39,7 @@ export const CardsTableItem: FC<Props> = ({card}) => {
             <div className={styles.cardsTableItemBody}>
                 <div>
                     <span>Word: </span>
-                    <span>&apos{card.word}&apos</span>
+                    <span>&apos;{card.word}&apos;</span>
                 </div>
                 <div>
                     <span>Translations: </span>
@@ -49,7 +52,7 @@ export const CardsTableItem: FC<Props> = ({card}) => {
                 </div>
                 <div>
                     <span>Pronunciation: </span>
-                    <span>&apos{card.pronunciation}&apos</span>
+                    <span>&apos;{card.pronunciation}&apos;</span>
                 </div>
                 <div>
                     <span>Categories: </span>

@@ -18,12 +18,10 @@ export const AddCardContainer: FC<Props> = ({className}) => {
     const categories = useSelector(getAllCategoriesUnchecked);
     
     const onOpen = () =>{
-        document.body.style.overflow = 'hidden';
         setShowModal(true);
     }
 
     const onClose = () =>{
-        document.body.removeAttribute('style');
         Object.keys(categories).forEach(item => categories[item] = false)
         setShowModal(false);
     }

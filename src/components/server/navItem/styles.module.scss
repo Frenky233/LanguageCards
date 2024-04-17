@@ -5,13 +5,19 @@
     border: 1px solid #000000;
     border-radius: 8px; 
     cursor: pointer;
-    font-size: 14px;
+    font-size: 20px;
     text-decoration: none;
     color: #000000;
     transition: background-color linear 0.2s;
     background-color: $backgroundColor;
 
-    &:hover{
+    &:active{
         background-color: rgba(#959595, 0.5);
+    }
+
+    @media screen and (min-width: 650px) {
+        &:hover{
+            background-color: rgba(#959595, 0.5);
+        }
     }
 }

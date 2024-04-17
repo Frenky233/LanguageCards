@@ -21,7 +21,7 @@ type Props = {
 }
 
 export const AddCardForm: FC<Props> = ({onSubmit, initialState}) => {
-    const {form, setWord, setTranslations, setPronunciation, setCategories} = useAddCardForm(initialState);
+    const {form, setWord, setTranslations, deleteTranslation, setPronunciation, setCategories} = useAddCardForm(initialState);
 
     if(Object.keys(form.categories).length !== Object.keys(initialState.categories).length){
         form.categories = {
@@ -41,7 +41,7 @@ export const AddCardForm: FC<Props> = ({onSubmit, initialState}) => {
                 <Input id='word' type='text' value={form.word} onChange={setWord} />
             </AddCardFormField>
             <AddCardFormField title='Translation'>
-                <AddCardFormCreateInput id='translation' value={form.translations} onChange={setTranslations} className={styles.translationsHolder}/>
+                <AddCardFormCreateInput id='translation' value={form.translations} onChange={setTranslations} onDelete={deleteTranslation} className={styles.translationsHolder}/>
             </AddCardFormField>
             <AddCardFormField title='Pronunciation'>
                 <Input id='pronunciation' type='text' value={form.pronunciation} onChange={setPronunciation} />
