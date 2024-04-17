@@ -24,3 +24,5 @@ export const Checkbox: FC<Props> = memo(({children, onChange, value, checked, di
         </label>
     );
 })
+
+Checkbox.displayName = 'Checkbox';

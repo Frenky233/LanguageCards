@@ -15,3 +15,5 @@ export const SidebarToggleComponent: FC<Props> = memo(({onClick, buttonRef}) => 
         </div>
     );
 })
+
+SidebarToggleComponent.displayName = 'SidebarToggleComponent';
