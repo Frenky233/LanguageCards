@@ -13,6 +13,19 @@ type Props = {
 export const CardAnswerFormContainer: FC<Props> = ({className, answer, submitAnswerToDB, getNextCard}) => {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
+
+    const updateAnswerForm = () =>{
+        textareaRef.current?.removeAttribute('readOnly');
+        textareaRef.current?.removeAttribute('data-correct');
+        textareaRef.current!.value = '';
+        buttonRef.current?.removeAttribute('disabled');
+    }
+
+    const getNextCardWrapper = async() =>{
+        getNextCard!();
+        await new Promise(r => setTimeout(r, 700));
+        updateAnswerForm();
+    }
     
     const checkAnswer = (value: string) =>{
         const card = document.getElementById('card'); 
@@ -34,11 +47,6 @@ export const CardAnswerFormContainer: FC<Props> = ({className, answer, submitAns
     }
 
     useEffect(() => {
-        textareaRef.current?.removeAttribute('readOnly');
-        textareaRef.current?.removeAttribute('data-correct');
-        textareaRef.current!.value = '';
-        buttonRef.current?.removeAttribute('disabled');
-
         const submitOnEnter = (event: KeyboardEvent) =>{
             if(document.getElementById('card')!.dataset.swipe === 'true') return;
 
@@ -46,7 +54,7 @@ export const CardAnswerFormContainer: FC<Props> = ({className, answer, submitAns
                 event.preventDefault();
 
                 if(buttonRef.current!.disabled){
-                    getNextCard!();
+                    getNextCardWrapper();
                     return;
                 }
 
@@ -61,5 +69,5 @@ export const CardAnswerFormContainer: FC<Props> = ({className, answer, submitAns
         }
     }, [answer])
     
-    return <CardAnswerFormComponent getNextCard={getNextCard!} submitButtonRef={buttonRef} textareaRef={textareaRef} onSubmit={onSubmit} className={className}/>;
+    return <CardAnswerFormComponent getNextCard={getNextCardWrapper} submitButtonRef={buttonRef} textareaRef={textareaRef} onSubmit={onSubmit} className={className}/>;
 }
