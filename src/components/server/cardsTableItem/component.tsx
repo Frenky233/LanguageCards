@@ -13,7 +13,8 @@ export const CardsTableItem: FC<Props> = ({card}) => {
         const element = event.target as HTMLElement;
 
         if(element.closest('button')) return;
-        const tableItem = element.closest('#item') as HTMLDivElement
+        const tableItem = element.closest('#item') as HTMLDivElement;
+        if(!tableItem) return;
         
         tableItem.dataset.open = tableItem.dataset.open === 'true' ? 'false' : 'true';
     }

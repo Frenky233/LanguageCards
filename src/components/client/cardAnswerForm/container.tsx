@@ -2,7 +2,6 @@
 
 import React, { FC, useEffect, useRef } from 'react';
 import { CardAnswerFormComponent } from './component';
-import { db } from '@/db/db.modal';
 
 type Props = {
     getNextCard?: () => void;
