@@ -36,7 +36,7 @@ export const CardsTableItem: FC<Props> = ({card}) => {
             <div className={styles.cardsTableItemBody}>
                 <div>
                     <span>Word: </span>
-                    <span>'{card.word}'</span>
+                    <span>&apos{card.word}&apos</span>
                 </div>
                 <div>
                     <span>Translations: </span>
@@ -49,7 +49,7 @@ export const CardsTableItem: FC<Props> = ({card}) => {
                 </div>
                 <div>
                     <span>Pronunciation: </span>
-                    <span>'{card.pronunciation}'</span>
+                    <span>&apos{card.pronunciation}&apos</span>
                 </div>
                 <div>
                     <span>Categories: </span>

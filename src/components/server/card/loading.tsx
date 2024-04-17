@@ -10,7 +10,7 @@ export const CardLoading: FC = ({}) => {
             <div className={clsx(styles.cardTitle, styles.loadingTitle)}>
                 <div className={styles.loading}></div>
             </div>
-            <div className={clsx(styles.cardPronunciation, styles.loading)}>'loading'</div>
+            <div className={clsx(styles.cardPronunciation, styles.loading)}>&aposloading&apos</div>
             <CardAnswerFormContainer className={styles.cardAnswer}/>
         </div>
     );
